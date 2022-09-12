@@ -1,15 +1,25 @@
 import * as React from "react";
 
 interface ILaunchItemProps {
-  flight_number: number | null | undefined;
-  launch_year: number | null | undefined;
+  details: string | null | undefined;
+  launch_year: string | null | undefined;
   mission_name: string | null | undefined;
-  tbd?: boolean | null | undefined;
+  launch_success?: boolean | null | undefined;
+  mission_id: string | null | undefined;
+  is_tentative?: boolean | null | undefined;
+  id: string;
 }
 export const LaunchItem = (props: ILaunchItemProps) => {
-  const { flight_number, launch_year, mission_name, tbd } = props;
+  const {
+    mission_id,
+    launch_year,
+    mission_name,
+    launch_success,
+    is_tentative,
+    id,
+  } = props;
 
   return (
-    <div>{`flight_number:${flight_number}: launch_year:${launch_year}:  tbd:${tbd}`}</div>
+    <div>{`id:${id}  launch_year:${launch_year}:  launch_success:${launch_success}`}</div>
   );
 };

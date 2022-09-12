@@ -19,8 +19,11 @@ const App = () => {
         <LaunchList name={"launch list"} query={useLaunchListQuery} />
       </ToggleRender>
       <EmptyDiv />
-      <ToggleRender name={"launch list-2"}>
-        <LaunchList name={"launch list-2"} query={useLaunchListQuery} />
+      <ToggleRender name={"launch list with extra fields"}>
+        <LaunchList
+          name={"launch list-2"}
+          query={useLaunchListWithExtraFieldsQuery}
+        />
       </ToggleRender>
       <EmptyDiv />
 

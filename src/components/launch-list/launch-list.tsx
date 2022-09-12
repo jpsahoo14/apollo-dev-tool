@@ -23,15 +23,30 @@ export function LaunchList(props: ILaunchListProps) {
   if (error) {
     return <div>error</div>;
   }
-  const comp = slicedArray?.map((item, index) => (
-    <LaunchItem
-      flight_number={item?.flight_number}
-      launch_year={item?.launch_year}
-      mission_name={item?.mission_name}
-      tbd={item?.tbd}
-      key={index}
-    />
-  ));
+  const comp = slicedArray?.map((item, index) => {
+    const {
+      id,
+      details,
+      mission_id,
+      mission_name,
+      launch_year,
+      launch_success,
+      is_tentative,
+    } = item;
+
+    return (
+      <LaunchItem
+        launch_year={launch_year}
+        mission_name={mission_name}
+        key={id}
+        details={details}
+        mission_id={mission_id}
+        launch_success={launch_success}
+        is_tentative={is_tentative}
+        id={id}
+      />
+    );
+  });
 
   return <>{comp}</>;
 }

@@ -3,10 +3,11 @@ import { gql } from "@apollo/client";
 export const QUERY_LAUNCH_LIST = gql`
   query LaunchList {
     launches {
-      flight_number
+      id
+      details
+      mission_id
       mission_name
       launch_year
-      mission_id
     }
   }
 `;

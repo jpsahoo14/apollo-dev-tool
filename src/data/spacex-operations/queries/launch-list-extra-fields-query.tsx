@@ -3,13 +3,13 @@ import { gql } from "@apollo/client";
 export const QUERY_LAUNCH_LIST = gql`
   query LaunchListWithExtraFields {
     launches {
-      flight_number
+      id
+      details
+      mission_id
       mission_name
       launch_year
-      mission_id
-      details
-      tbd
-      upcoming
+      launch_success
+      is_tentative
     }
   }
 `;

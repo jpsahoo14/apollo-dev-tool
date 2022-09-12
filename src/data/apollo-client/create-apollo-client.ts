@@ -3,11 +3,11 @@ import { resolvers } from "../resolvers";
 import { typePolicies } from "./type-policies";
 
 export const createApolloClient = () => {
-  const inMemoryCache = new InMemoryCache({ typePolicies });
+  const inMemoryCache = new InMemoryCache();
 
   const apolloClient = new ApolloClient({
     cache: inMemoryCache,
-    uri: "https://spacexdata.herokuapp.com/graphql",
+    uri: "https://api.spacex.land/graphql/",
     resolvers,
   });
 
