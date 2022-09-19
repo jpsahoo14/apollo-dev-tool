@@ -7,11 +7,15 @@ import {
   LaunchListWithExtraFieldsQuery,
 } from "../../generated";
 import produce from "immer";
+import { fetchLaunch } from "./spacex-queries";
+
+const index = 0;
 
 export const resolvers = {
+  Query: { fetchLaunch },
   Mutation: {
     addLaunch: (_, _1, { cache }: { cache: InMemoryCache }) => {
-      return operateOnLaunchListWithExtraFieldsDocument({ cache });
+      return operateOnLaunchListDocument({ cache });
     },
   },
 };
@@ -32,11 +36,13 @@ const operateOnLaunchListDocument = ({ cache }) => {
     mission_id: ["123"],
   };
   const nextState = produce(data, (draft) => {
-    draft.launches.push(newLaunch);
+    draft.launches[index].launch_year = `${
+      parseInt(draft.launches[index].launch_year) + 1
+    }`;
   });
 
   // cache.writeQuery({ query: LaunchListDocument, data: nextState });
-  return existingLaunch;
+  return nextState.launches[index];
 };
 
 const operateOnLaunchListWithExtraFieldsDocument = ({ cache }) => {
@@ -50,8 +56,8 @@ const operateOnLaunchListWithExtraFieldsDocument = ({ cache }) => {
     launch_year: "2010",
     mission_id: ["123"],
   };
-  const index = 0;
   console.log({ prevState: data.launches[index] });
+
   const nextState = produce(data, (draft) => {
     draft.launches[index].launch_success =
       !draft.launches[index].launch_success;

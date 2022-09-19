@@ -10,6 +10,8 @@ import {
   useLaunchListQuery,
   useLaunchListWithExtraFieldsQuery,
 } from "../../generated/graphql";
+import { FetchLaunch, FetchLaunchUncommonFields } from "../fetch-launch";
+
 const App = () => {
   const client = useApolloClient();
 
@@ -28,6 +30,8 @@ const App = () => {
       <EmptyDiv />
 
       <AddLaunch />
+      <FetchLaunch />
+      <FetchLaunchUncommonFields />
       <ApolloDevTool client={client} />
     </>
   );

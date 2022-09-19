@@ -6,7 +6,12 @@ export const AddLaunch = () => {
   const client = useApolloClient();
   const onClick = React.useCallback(async () => {
     try {
-      await client.mutate({ mutation: ADD_LAUNCH_MUTATION });
+      await client.mutate({
+        mutation: ADD_LAUNCH_MUTATION,
+        onQueryUpdated: (args) => {
+          console.log({ args });
+        },
+      });
     } catch (error) {
       console.log(`fail to mutate add launch`, error);
     }
